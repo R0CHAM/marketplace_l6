@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/oi', function () {
+    return "<h1>Olá, mundo!</h1>";
+});
