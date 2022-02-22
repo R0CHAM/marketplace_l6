@@ -6,6 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Store extends Model
 {
-    // protected $table = 'nome_que_foge_da_convenção';
+    protected $fillable = ['name', 'description', 'phone', 'mobile_phone','slug'];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }
