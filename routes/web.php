@@ -19,13 +19,30 @@ Route::get('/oi', function () {
     return "<h1>Olá, mundo!</h1>";
 });
 
-Route::get('/products', function () {
-    $products = \App\Product::all(); // select * from products
+Route::get('/product', function () {
+//    return \App\Product::all(); // select * from products
+//    $store = \App\Store::find(10);
+//    $product = $store->products()->create([
+//        'name' => 'Picanha Porcão 1kg',
+//        'description' => 'Picanha qualidade da churrascaria Porcão, peça de 1Kg',
+//        'body' => 'Texto apelativo pra você comprar',
+//        'price' => 89.90,
+//        'slug' => 'picanha-porcao-1kg',
+//    ]);
 
-    return $products;
+    $product = \App\Product::find(81);
+//    dd($product->categories()->sync([1,2]));
+
+    return $product;
 });
 
-Route::get('/users', function () {
+Route::get('/store', function () {
+    $store = \App\Store::find(10); // select * from products
+
+    return $store->products;
+});
+
+Route::get('/user', function () {
     //================ Active record =======================
 //    $user = new \App\User;
 //    $user->name = 'Kvothe Bloodless';
@@ -45,11 +62,38 @@ Route::get('/users', function () {
 //    $user->update([
 //        'email' => 'granger.h@hogwarts.com',
 //    ]);
-    return \App\User::all();
 
 //    return \App\User::where('name', 'Kvothe Bloodless')->get();
 //    return \App\User::all(); //retorna uma Collection
+    $user = \App\User::find(10);
+//    $user->store()->update([
+//        'name' => 'Embraza Steakhouse',
+//        'description' => 'Boutique de carnes nobres e delivery',
+//        'phone' => '55 21 970252816',
+//        'mobile_phone' => '55 21 970282828',
+//        'slug' => 'embraza-steakhouse',
+//    ]);
+//
+    return $user->store;
 
+//    return \App\User::find();
 
+});
+
+Route::get('/category', function(){
+
+//    \App\Category::create([
+//       'name' => 'Carne',
+//        'description' => null,
+//        'slug' => 'carne',
+//    ]);
+//
+//    \App\Category::create([
+//        'name' => 'Frango',
+//        'description' => null,
+//        'slug' => 'frango',
+//    ]);
+
+    return \App\Category::all();
 
 });
