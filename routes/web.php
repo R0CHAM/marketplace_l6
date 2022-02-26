@@ -15,11 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/oi', function () {
-    return "<h1>Olá, mundo!</h1>";
-});
-
-Route::get('/product', function () {
+//Route::get('/oi', function () {
+//    return "<h1>Olá, mundo!</h1>";
+//});
+//
+//Route::get('/product', function () {
 //    return \App\Product::all(); // select * from products
 //    $store = \App\Store::find(10);
 //    $product = $store->products()->create([
@@ -29,43 +29,41 @@ Route::get('/product', function () {
 //        'price' => 89.90,
 //        'slug' => 'picanha-porcao-1kg',
 //    ]);
-
-    $product = \App\Product::find(81);
+//    $product = \App\Product::find(81);
 //    dd($product->categories()->sync([1,2]));
-
-    return $product;
-});
-
-Route::get('/store', function () {
-    $store = \App\Store::find(10); // select * from products
-
-    return $store->products;
-});
-
-Route::get('/user', function () {
+//    return $product;
+//});
+//
+//Route::get('/store', function () {
+//    $store = \App\Store::find(10); // select * from products
+//
+//    return $store->products;
+//});
+//
+//Route::get('/user', function () {
     //================ Active record =======================
 //    $user = new \App\User;
 //    $user->name = 'Kvothe Bloodless';
 //    $user->email = 'kvothe@university.com';
 //    $user->password = bcrypt('Denna');
 //    $user->save();
-
+//
 //    ================ Mass assignment =======================
 //    $user = \App\User::create([
 //        'name' => 'Hermione Granger',
 //        'email' => 'hermione@hogwarts.com',
 //        'password' => bcrypt('Roney'),
 //    ]);
-
+//
 //    ================== Mass update ======================
 //    $user = \App\User::find(22);
 //    $user->update([
 //        'email' => 'granger.h@hogwarts.com',
 //    ]);
-
+//
 //    return \App\User::where('name', 'Kvothe Bloodless')->get();
 //    return \App\User::all(); //retorna uma Collection
-    $user = \App\User::find(10);
+//    $user = \App\User::find(10);
 //    $user->store()->update([
 //        'name' => 'Embraza Steakhouse',
 //        'description' => 'Boutique de carnes nobres e delivery',
@@ -74,14 +72,14 @@ Route::get('/user', function () {
 //        'slug' => 'embraza-steakhouse',
 //    ]);
 //
-    return $user->store;
-
+//    return $user->store;
+//
 //    return \App\User::find();
-
-});
-
-Route::get('/category', function(){
-
+//
+//});
+//
+//Route::get('/category', function(){
+//
 //    \App\Category::create([
 //       'name' => 'Carne',
 //        'description' => null,
@@ -93,7 +91,18 @@ Route::get('/category', function(){
 //        'description' => null,
 //        'slug' => 'frango',
 //    ]);
+//
+//    return \App\Category::all();
+//
+//});
 
-    return \App\Category::all();
+Route::prefix('admin')->namespace('Admin')->group(function(){
 
+    Route::prefix('stores')->group(function(){
+
+        Route::get('/', 'StoreController@index');
+        Route::get('/create', 'StoreController@create');
+        Route::post('/store', 'StoreController@store');
+
+    });
 });
