@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 //Route::get('/oi', function () {
 //    return "<h1>Olá, mundo!</h1>";
@@ -96,7 +96,9 @@ Route::get('/', function () {
 //
 //});
 
-Route::prefix('admin')->name('admin.')->namespace('Admin')->group(function(){
+Route::group(['middleware' => ['auth']], function(){
+
+    Route::prefix('admin')->name('admin.')->namespace('Admin')->group(function(){
 
 //    Route::prefix('stores')->name('stores.')->group(function(){
 //
@@ -109,6 +111,13 @@ Route::prefix('admin')->name('admin.')->namespace('Admin')->group(function(){
 //
 //    });
 
-    Route::resource('stores', 'StoreController');
-    Route::resource('products', 'ProductController');
+        Route::resource('stores', 'StoreController');
+        Route::resource('products', 'ProductController');
+
+    });
+
 });
+
+Auth::routes();
+
+//Route::get('/home', 'HomeController@index')->name('home');

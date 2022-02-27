@@ -8,6 +8,7 @@
             <tr>
                 <th>#</th>
                 <th>Loja</th>
+                <th>Dono</th>
                 <th>Ações</th>
             </tr>
         </thead>
@@ -16,6 +17,7 @@
                 <tr>
                     <td>{{$store->id}}</td>
                     <td>{{$store->name}}</td>
+                    <td>{{$store->user->name}}</td>
                     <td>
                         <div class="btn-group">
                             <a href="{{route('admin.stores.edit', ['store' => $store->id ])}}" class="btn btn-sm btn-secondary">EDITAR</a>
